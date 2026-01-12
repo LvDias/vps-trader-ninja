@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Roboto } from "next/font/google"
 import "./globals.css"
+import { GoogleTagManager } from "@next/third-parties/google"
 import { Footer } from "./@components/footer"
 import { Header } from "./@components/header"
 
@@ -26,6 +27,8 @@ export default function RootLayout({
                 {children}
                 <Footer />
             </body>
+
+            <GoogleTagManager gtmId="GTM-NG6RWZV9" />
         </html>
     )
 }
