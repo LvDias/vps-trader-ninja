@@ -1,9 +1,31 @@
-import { cookies } from "next/headers"
-import Link from "next/link"
+"use client"
 
-export async function Button({ children }: { children: React.ReactNode }) {
-    const cookieStore = await cookies()
-    const lead = cookieStore.get("lead")?.value ?? "cookieLead"
+import Link from "next/link"
+import { useEffect, useState } from "react"
+
+export function Button({ children }: { children: React.ReactNode }) {
+    const [lead, setLead] = useState<string>("")
+
+    useEffect(() => {
+        const checkCookie = () => {
+            const match = document.cookie.match(/(^| )lead=([^;]+)/)
+            if (match) {
+                setLead(match[2])
+                return true
+            }
+            return false
+        }
+
+        if (checkCookie()) return
+
+        const interval = setInterval(() => {
+            if (checkCookie()) {
+                clearInterval(interval)
+            }
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, [])
 
     const url = new URL("https://pay.cakto.com.br/6kug9q3_721219")
     url.searchParams.set("sck", lead)
