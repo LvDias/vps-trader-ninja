@@ -9,10 +9,16 @@ export function Footer() {
                     reservados.
                 </p>
                 <div className="flex gap-4">
-                    <Link className="text-white/50 text-xs" href="#">
+                    <Link
+                        className="text-white/50 text-xs hover:text-white"
+                        href="/privacy-policy"
+                    >
                         Políticas de Privacidade
                     </Link>
-                    <Link className="text-white/50 text-xs" href="#">
+                    <Link
+                        className="text-white/50 text-xs hover:text-white"
+                        href="/terms-of-service"
+                    >
                         Termos de Uso
                     </Link>
                 </div>
